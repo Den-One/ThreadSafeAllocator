@@ -1,0 +1,35 @@
+\doxysection{tsalloc.\+hpp File Reference}
+\hypertarget{tsalloc_8hpp}{}\label{tsalloc_8hpp}\index{tsalloc.hpp@{tsalloc.hpp}}
+
+
+Thread-\/safe memory allocator, supports C++17 standard and higher.  
+
+
+{\ttfamily \#include $<$cstdint$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacetsa}{tsa}}
+\begin{DoxyCompactList}\small\item\em Thread-\/safe allocator namespace. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetsa_ae4265a45822e2982d1cb17b391746517}\label{namespacetsa_ae4265a45822e2982d1cb17b391746517} 
+using {\bfseries tsa\+::word\+\_\+t} = uintptr\+\_\+t
+\begin{DoxyCompactList}\small\item\em Payload type to point to the correct place in the memory block. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_a9017c6aedfefde46dd78e599141470b3}{tsa\+::alloc}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Allocates a memory block of \textquotesingle{}size\textquotesingle{} bytes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacetsa_a69d9829c064df705a3f201f803f1ce2a}{tsa\+::free}} (\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\+\_\+t}} \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Deallocates provided memory from pointer. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_a14e4da034ca803d941ea401747d880ff}\label{namespacetsa_a14e4da034ca803d941ea401747d880ff} 
+void {\bfseries tsa\+::print\+Blocks} ()
+\begin{DoxyCompactList}\small\item\em Print to console \mbox{[}BLOCK\+\_\+\+SIZE, USED\+\_\+\+BITES\mbox{]} allocated memory form. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Thread-\/safe memory allocator, supports C++17 standard and higher. 
+
+The module interface placed in \textquotesingle{}tsa\+:\+:\textquotesingle{} namespace. \textquotesingle{}cstdint\textquotesingle{} defined in header. 

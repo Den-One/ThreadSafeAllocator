@@ -1,0 +1,23 @@
+\doxysection{tsalloc.\+hpp}
+\hypertarget{tsalloc_8hpp_source}{}\label{tsalloc_8hpp_source}\index{tsalloc.hpp@{tsalloc.hpp}}
+\mbox{\hyperlink{tsalloc_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\#if\ (\_\_cplusplus\ >=\ 201703L)\ //\ C++17\ and\ higher}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetsa}{tsa}}\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\_t}}\ =\ uintptr\_t;\ \textcolor{comment}{//\ machine\ word}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\_t}}*\ \mbox{\hyperlink{namespacetsa_a9017c6aedfefde46dd78e599141470b3}{alloc}}(\textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetsa_a69d9829c064df705a3f201f803f1ce2a}{free}}(\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\_t}}*\ data);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetsa_a14e4da034ca803d941ea401747d880ff}{printBlocks}}();}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\#endif\ //\ (\_\_cplusplus\ >=\ 201703L)}}
+
+\end{DoxyCode}

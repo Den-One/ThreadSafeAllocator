@@ -1,0 +1,392 @@
+\doxysection{tsa Namespace Reference}
+\hypertarget{namespacetsa}{}\label{namespacetsa}\index{tsa@{tsa}}
+
+
+Thread-\/safe allocator namespace.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtsa_1_1_block}{Block}}
+\begin{DoxyCompactList}\small\item\em Represents a block of memory in the memory management system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetsa_ae4265a45822e2982d1cb17b391746517}\label{namespacetsa_ae4265a45822e2982d1cb17b391746517} 
+using {\bfseries word\+\_\+t} = uintptr\+\_\+t
+\begin{DoxyCompactList}\small\item\em Payload type to point to the correct place in the memory block. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetsa_ac4e3fad9ecdfdb73d0f1434ce0277863}\label{namespacetsa_ac4e3fad9ecdfdb73d0f1434ce0277863} 
+enum class {\bfseries Search\+Mode} \{ {\bfseries SEGREGATED\+\_\+\+LIST}
+, {\bfseries SEARCH\+\_\+\+MODE\+\_\+\+SIZE}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{namespacetsa_a4c35a579a4b187209b4f3ca789cf4bae}{align}} (size\+\_\+t x)
+\begin{DoxyCompactList}\small\item\em Makes machine word boundary during allocation via formula. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{namespacetsa_a6914d2c6837964f58c930891524a6af6}{alloc\+Size}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Reserves an addition space for the memory block structre. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_a258a395d0441bd1653331cfbed2282cb}{request\+From\+OS}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Requests memory from OS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_ad30aa8d792662978908829048b92240d}{split}} (\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}block, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Splits the block on two. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacetsa_a755b9c2443991db1d9aa91e94ab310fc}{can\+Split}} (\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}block, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Checks the size of block and the possibility to be splitted. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_aab2a60e21f3badcd179800855cc0a450}{list\+Allocate}} (\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}block, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Allocates a block from the list, splitting if needed. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespacetsa_afd879f1c753bdfb10fcd8da951518fbf}{get\+Bucket}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Gets bucket number from segregated\+Lists based on the size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_afe40ebc6bd96da9687b7a7d8224257bb}{first\+Fit}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em First-\/fit algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_afbe29b005e766e2c21591b14a7b905d0}{segregated\+Fit}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Segregated fit algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_aa5361c9848d9fd67b7dd53b51cb12718}{coalesce}} (\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}block)
+\begin{DoxyCompactList}\small\item\em Coalesces two adjacent blocks. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacetsa_a1073758de2bb36c302fa2abb8a29fb9d}{can\+Coalesce}} (\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}block)
+\begin{DoxyCompactList}\small\item\em Checks the ability to unite two blocks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_a3917f72a7f2fa0637c0a892b7395d910}{get\+Header}} (\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\+\_\+t}} \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Return geader to frees the previously allocated block. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_a92ebd9f396ab293d5cacc19e3ec7ea33}\label{namespacetsa_a92ebd9f396ab293d5cacc19e3ec7ea33} 
+void {\bfseries reset\+Heap} ()
+\begin{DoxyCompactList}\small\item\em Resets the heap to the original position. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_a9017c6aedfefde46dd78e599141470b3}{alloc}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Allocates a memory block of \textquotesingle{}size\textquotesingle{} bytes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacetsa_a69d9829c064df705a3f201f803f1ce2a}{free}} (\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\+\_\+t}} \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Deallocates provided memory from pointer. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_ac235db92f4eb73afea032d2cf8320a70}\label{namespacetsa_ac235db92f4eb73afea032d2cf8320a70} 
+void {\bfseries visit} (const std\+::function$<$ void(\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*})$>$ \&callback)
+\item 
+\Hypertarget{namespacetsa_a67ea118cf67442c3fdad5bf15dfe1a39}\label{namespacetsa_a67ea118cf67442c3fdad5bf15dfe1a39} 
+void {\bfseries segregated\+Traverse} (const std\+::function$<$ void(\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*})$>$ \&callback)
+\begin{DoxyCompactList}\small\item\em Traverses the heap. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_a8b01e87176c95f964184f428d0acddd8}\label{namespacetsa_a8b01e87176c95f964184f428d0acddd8} 
+void {\bfseries traverse} (const std\+::function$<$ void(\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*})$>$ \&callback)
+\begin{DoxyCompactList}\small\item\em Traverses the heap. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_a14e4da034ca803d941ea401747d880ff}\label{namespacetsa_a14e4da034ca803d941ea401747d880ff} 
+void {\bfseries print\+Blocks} ()
+\begin{DoxyCompactList}\small\item\em Print to console \mbox{[}BLOCK\+\_\+\+SIZE, USED\+\_\+\+BITES\mbox{]} allocated memory form. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetsa_aefe6de4dd805a19787549552075ac334}\label{namespacetsa_aefe6de4dd805a19787549552075ac334} 
+std\+::mutex {\bfseries alloc\+Mutex}
+\begin{DoxyCompactList}\small\item\em Mutex to lock in the \doxylink{namespacetsa_a9017c6aedfefde46dd78e599141470b3}{alloc(size\+\_\+t)} critical section. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_ae2505cd5c45885965468ba326a055415}\label{namespacetsa_ae2505cd5c45885965468ba326a055415} 
+std\+::mutex {\bfseries free\+Mutex}
+\begin{DoxyCompactList}\small\item\em Mutex to lock in the \doxylink{namespacetsa_a69d9829c064df705a3f201f803f1ce2a}{free()} critical section. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_a5c2adfd5037a9b15c3531598d0aecd29}\label{namespacetsa_a5c2adfd5037a9b15c3531598d0aecd29} 
+std\+::mutex {\bfseries print\+Mutex}
+\begin{DoxyCompactList}\small\item\em Mutex to lock in the \doxylink{namespacetsa_a14e4da034ca803d941ea401747d880ff}{print\+Blocks()} critical section. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_a44c2de3ec72a256065e330f40ecc93b4}{segregated\+Lists}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_a5d23b02fbf04761e906beaac0927a02d}{segregated\+Tops}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Thread-\/safe allocator namespace. 
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ Provides fixed-\/size macrose uintptr\+\_\+t for machine word. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacetsa_a4c35a579a4b187209b4f3ca789cf4bae}\label{namespacetsa_a4c35a579a4b187209b4f3ca789cf4bae} 
+\index{tsa@{tsa}!align@{align}}
+\index{align@{align}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{align()}{align()}}
+{\footnotesize\ttfamily size\+\_\+t tsa\+::align (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+
+
+Makes machine word boundary during allocation via formula. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Takes the bytes number generated by sizeof(type) function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns alligned amount of bits. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_a9017c6aedfefde46dd78e599141470b3}\label{namespacetsa_a9017c6aedfefde46dd78e599141470b3} 
+\index{tsa@{tsa}!alloc@{alloc}}
+\index{alloc@{alloc}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{alloc()}{alloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\+\_\+t}} \texorpdfstring{$\ast$}{*} tsa\+::alloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Allocates a memory block of \textquotesingle{}size\textquotesingle{} bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Takes the bytes number generated by sizeof(type) function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns payload pointer of generated memory block. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_a6914d2c6837964f58c930891524a6af6}\label{namespacetsa_a6914d2c6837964f58c930891524a6af6} 
+\index{tsa@{tsa}!allocSize@{allocSize}}
+\index{allocSize@{allocSize}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{allocSize()}{allocSize()}}
+{\footnotesize\ttfamily size\+\_\+t tsa\+::alloc\+Size (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Reserves an addition space for the memory block structre. 
+
+Since the {\ttfamily word\+\_\+t data\mbox{[}1\mbox{]}} already allocates one word inside the \doxylink{structtsa_1_1_block}{Block} structure, we decrease it from the size request\+: if a user allocates only one word, it\textquotesingle{}s fully in the \doxylink{structtsa_1_1_block}{Block} struct. 
+\begin{DoxyParams}{Parameters}
+{\em size} & Takes the bytes number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns total allocation size. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_a1073758de2bb36c302fa2abb8a29fb9d}\label{namespacetsa_a1073758de2bb36c302fa2abb8a29fb9d} 
+\index{tsa@{tsa}!canCoalesce@{canCoalesce}}
+\index{canCoalesce@{canCoalesce}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{canCoalesce()}{canCoalesce()}}
+{\footnotesize\ttfamily bool tsa\+::can\+Coalesce (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}}]{block }\end{DoxyParamCaption})}
+
+
+
+Checks the ability to unite two blocks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & Generated block of memory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if can be united, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_a755b9c2443991db1d9aa91e94ab310fc}\label{namespacetsa_a755b9c2443991db1d9aa91e94ab310fc} 
+\index{tsa@{tsa}!canSplit@{canSplit}}
+\index{canSplit@{canSplit}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{canSplit()}{canSplit()}}
+{\footnotesize\ttfamily bool tsa\+::can\+Split (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}}]{block,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Checks the size of block and the possibility to be splitted. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & Generated block of memory. \\
+\hline
+{\em size} & Takes the bytes number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if can be splitted, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_aa5361c9848d9fd67b7dd53b51cb12718}\label{namespacetsa_aa5361c9848d9fd67b7dd53b51cb12718} 
+\index{tsa@{tsa}!coalesce@{coalesce}}
+\index{coalesce@{coalesce}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{coalesce()}{coalesce()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} tsa\+::coalesce (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}}]{block }\end{DoxyParamCaption})}
+
+
+
+Coalesces two adjacent blocks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & The pointer to the block. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the pointer to the united blocks. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_afe40ebc6bd96da9687b7a7d8224257bb}\label{namespacetsa_afe40ebc6bd96da9687b7a7d8224257bb} 
+\index{tsa@{tsa}!firstFit@{firstFit}}
+\index{firstFit@{firstFit}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{firstFit()}{firstFit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} tsa\+::first\+Fit (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+First-\/fit algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The bytes number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the pointer to the block, otherwise nullptr. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_a69d9829c064df705a3f201f803f1ce2a}\label{namespacetsa_a69d9829c064df705a3f201f803f1ce2a} 
+\index{tsa@{tsa}!free@{free}}
+\index{free@{free}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{free()}{free()}}
+{\footnotesize\ttfamily void tsa\+::free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})}
+
+
+
+Deallocates provided memory from pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Takes} & payload pointer to the memory block. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacetsa_afd879f1c753bdfb10fcd8da951518fbf}\label{namespacetsa_afd879f1c753bdfb10fcd8da951518fbf} 
+\index{tsa@{tsa}!getBucket@{getBucket}}
+\index{getBucket@{getBucket}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{getBucket()}{getBucket()}}
+{\footnotesize\ttfamily int tsa\+::get\+Bucket (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Gets bucket number from segregated\+Lists based on the size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The bytes number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the bucket number. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_a3917f72a7f2fa0637c0a892b7395d910}\label{namespacetsa_a3917f72a7f2fa0637c0a892b7395d910} 
+\index{tsa@{tsa}!getHeader@{getHeader}}
+\index{getHeader@{getHeader}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{getHeader()}{getHeader()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} tsa\+::get\+Header (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})}
+
+
+
+Return geader to frees the previously allocated block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Allocated data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns object header. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_aab2a60e21f3badcd179800855cc0a450}\label{namespacetsa_aab2a60e21f3badcd179800855cc0a450} 
+\index{tsa@{tsa}!listAllocate@{listAllocate}}
+\index{listAllocate@{listAllocate}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{listAllocate()}{listAllocate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} tsa\+::list\+Allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}}]{block,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Allocates a block from the list, splitting if needed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & Generated block of memory. \\
+\hline
+{\em size} & The bytes number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the pointer to the block. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_a258a395d0441bd1653331cfbed2282cb}\label{namespacetsa_a258a395d0441bd1653331cfbed2282cb} 
+\index{tsa@{tsa}!requestFromOS@{requestFromOS}}
+\index{requestFromOS@{requestFromOS}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{requestFromOS()}{requestFromOS()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} tsa\+::request\+From\+OS (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Requests memory from OS. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Takes the bytes number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns generated block of memory. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_afbe29b005e766e2c21591b14a7b905d0}\label{namespacetsa_afbe29b005e766e2c21591b14a7b905d0} 
+\index{tsa@{tsa}!segregatedFit@{segregatedFit}}
+\index{segregatedFit@{segregatedFit}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{segregatedFit()}{segregatedFit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} tsa\+::segregated\+Fit (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Segregated fit algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The bytes number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the pointer to the block. 
+\end{DoxyReturn}
+\Hypertarget{namespacetsa_ad30aa8d792662978908829048b92240d}\label{namespacetsa_ad30aa8d792662978908829048b92240d} 
+\index{tsa@{tsa}!split@{split}}
+\index{split@{split}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{split()}{split()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} tsa\+::split (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}}]{block,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Splits the block on two. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & Generated block of memory. \\
+\hline
+{\em size} & Takes the bytes number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the pointer to the smaller sub-\/block. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacetsa_a44c2de3ec72a256065e330f40ecc93b4}\label{namespacetsa_a44c2de3ec72a256065e330f40ecc93b4} 
+\index{tsa@{tsa}!segregatedLists@{segregatedLists}}
+\index{segregatedLists@{segregatedLists}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{segregatedLists}{segregatedLists}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtsa_1_1_block}{Block}}\texorpdfstring{$\ast$}{*} tsa\+::segregated\+Lists\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{namespacetsa_a5d23b02fbf04761e906beaac0927a02d}\label{namespacetsa_a5d23b02fbf04761e906beaac0927a02d} 
+\index{tsa@{tsa}!segregatedTops@{segregatedTops}}
+\index{segregatedTops@{segregatedTops}!tsa@{tsa}}
+\doxysubsubsection{\texorpdfstring{segregatedTops}{segregatedTops}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtsa_1_1_block}{Block}}\texorpdfstring{$\ast$}{*} tsa\+::segregated\+Tops\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},\ \ \ }
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}

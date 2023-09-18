@@ -1,0 +1,39 @@
+/*
+
+Разработать модуль для программы на языке C++, выполняющую роль блочного
+аллокатора  памяти. Размер одного блока памяти и количество резервируемых
+аллокатором блоков указываются в качестве параметров при создании объекта
+аллокатора.
+
+Требования к модулю:
+* должен работать в условиях многозадачного окружения, то есть должен быть
+потокобезопасным;
+* покрыт набором юнит-тестов, в том числе покрывающих распространенные
+иключительные ситуации при работе с кодом аллокатора в многопоточной среде;
+* документирован - публичное API, используя doxygen.
+
+Требования к оформлению:
+* подготовлена система сборки, тестирования и генерации документации;
+* сборка под linux.
+
+Develop a module for a C++ program that acts as a block memory allocator.
+The size of one memory block and the number of blocks reserved by the 
+allocator are specified as parameters when creating an allocator object.
+
+Module requirements:
+* must work in a multitasking environment, that is, it must be thread safe;
+* covered with a set of unit tests, including those covering common exception
+situations when working with allocator code in a multi-threaded environment;
+* documented - public API using doxygen.
+
+Design requirements:
+* a system for assembling, testing and generating documentation has been 
+prepared;
+* assembly for Linux.
+
+
+Необходимо при инициализации выделить область памяти указанного/заданного
+размера и затем дать возможность выделять/освобождать блоки требуемой
+величины.
+
+*/

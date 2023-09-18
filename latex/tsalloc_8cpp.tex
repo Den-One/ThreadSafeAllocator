@@ -1,0 +1,98 @@
+\doxysection{tsalloc.\+cpp File Reference}
+\hypertarget{tsalloc_8cpp}{}\label{tsalloc_8cpp}\index{tsalloc.cpp@{tsalloc.cpp}}
+
+
+Thread-\/safe memory allocator, supports C++17 standard and higher.  
+
+
+{\ttfamily \#include "{}tsalloc.\+hpp"{}}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtsa_1_1_block}{tsa\+::\+Block}}
+\begin{DoxyCompactList}\small\item\em Represents a block of memory in the memory management system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacetsa}{tsa}}
+\begin{DoxyCompactList}\small\item\em Thread-\/safe allocator namespace. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetsa_ac4e3fad9ecdfdb73d0f1434ce0277863}\label{namespacetsa_ac4e3fad9ecdfdb73d0f1434ce0277863} 
+enum class {\bfseries Search\+Mode} \{ {\bfseries SEGREGATED\+\_\+\+LIST}
+, {\bfseries SEARCH\+\_\+\+MODE\+\_\+\+SIZE}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{namespacetsa_a4c35a579a4b187209b4f3ca789cf4bae}{tsa\+::align}} (size\+\_\+t x)
+\begin{DoxyCompactList}\small\item\em Makes machine word boundary during allocation via formula. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{namespacetsa_a6914d2c6837964f58c930891524a6af6}{tsa\+::alloc\+Size}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Reserves an addition space for the memory block structre. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_a258a395d0441bd1653331cfbed2282cb}{tsa\+::request\+From\+OS}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Requests memory from OS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_ad30aa8d792662978908829048b92240d}{tsa\+::split}} (\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}block, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Splits the block on two. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacetsa_a755b9c2443991db1d9aa91e94ab310fc}{tsa\+::can\+Split}} (\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}block, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Checks the size of block and the possibility to be splitted. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_aab2a60e21f3badcd179800855cc0a450}{tsa\+::list\+Allocate}} (\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}block, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Allocates a block from the list, splitting if needed. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{namespacetsa_afd879f1c753bdfb10fcd8da951518fbf}{tsa\+::get\+Bucket}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Gets bucket number from segregated\+Lists based on the size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_afe40ebc6bd96da9687b7a7d8224257bb}{tsa\+::first\+Fit}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em First-\/fit algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_afbe29b005e766e2c21591b14a7b905d0}{tsa\+::segregated\+Fit}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Segregated fit algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_aa5361c9848d9fd67b7dd53b51cb12718}{tsa\+::coalesce}} (\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}block)
+\begin{DoxyCompactList}\small\item\em Coalesces two adjacent blocks. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacetsa_a1073758de2bb36c302fa2abb8a29fb9d}{tsa\+::can\+Coalesce}} (\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*}block)
+\begin{DoxyCompactList}\small\item\em Checks the ability to unite two blocks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_a3917f72a7f2fa0637c0a892b7395d910}{tsa\+::get\+Header}} (\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\+\_\+t}} \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Return geader to frees the previously allocated block. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_a92ebd9f396ab293d5cacc19e3ec7ea33}\label{namespacetsa_a92ebd9f396ab293d5cacc19e3ec7ea33} 
+void {\bfseries tsa\+::reset\+Heap} ()
+\begin{DoxyCompactList}\small\item\em Resets the heap to the original position. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_a9017c6aedfefde46dd78e599141470b3}{tsa\+::alloc}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Allocates a memory block of \textquotesingle{}size\textquotesingle{} bytes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacetsa_a69d9829c064df705a3f201f803f1ce2a}{tsa\+::free}} (\mbox{\hyperlink{namespacetsa_ae4265a45822e2982d1cb17b391746517}{word\+\_\+t}} \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Deallocates provided memory from pointer. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_ac235db92f4eb73afea032d2cf8320a70}\label{namespacetsa_ac235db92f4eb73afea032d2cf8320a70} 
+void {\bfseries tsa\+::visit} (const std\+::function$<$ void(\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*})$>$ \&callback)
+\item 
+\Hypertarget{namespacetsa_a67ea118cf67442c3fdad5bf15dfe1a39}\label{namespacetsa_a67ea118cf67442c3fdad5bf15dfe1a39} 
+void {\bfseries tsa\+::segregated\+Traverse} (const std\+::function$<$ void(\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*})$>$ \&callback)
+\begin{DoxyCompactList}\small\item\em Traverses the heap. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_a8b01e87176c95f964184f428d0acddd8}\label{namespacetsa_a8b01e87176c95f964184f428d0acddd8} 
+void {\bfseries tsa\+::traverse} (const std\+::function$<$ void(\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*})$>$ \&callback)
+\begin{DoxyCompactList}\small\item\em Traverses the heap. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_a14e4da034ca803d941ea401747d880ff}\label{namespacetsa_a14e4da034ca803d941ea401747d880ff} 
+void {\bfseries tsa\+::print\+Blocks} ()
+\begin{DoxyCompactList}\small\item\em Print to console \mbox{[}BLOCK\+\_\+\+SIZE, USED\+\_\+\+BITES\mbox{]} allocated memory form. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetsa_aefe6de4dd805a19787549552075ac334}\label{namespacetsa_aefe6de4dd805a19787549552075ac334} 
+std\+::mutex {\bfseries tsa\+::alloc\+Mutex}
+\begin{DoxyCompactList}\small\item\em Mutex to lock in the \doxylink{namespacetsa_a9017c6aedfefde46dd78e599141470b3}{alloc(size\+\_\+t)} critical section. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_ae2505cd5c45885965468ba326a055415}\label{namespacetsa_ae2505cd5c45885965468ba326a055415} 
+std\+::mutex {\bfseries tsa\+::free\+Mutex}
+\begin{DoxyCompactList}\small\item\em Mutex to lock in the \doxylink{namespacetsa_a69d9829c064df705a3f201f803f1ce2a}{free()} critical section. \end{DoxyCompactList}\item 
+\Hypertarget{namespacetsa_a5c2adfd5037a9b15c3531598d0aecd29}\label{namespacetsa_a5c2adfd5037a9b15c3531598d0aecd29} 
+std\+::mutex {\bfseries tsa\+::print\+Mutex}
+\begin{DoxyCompactList}\small\item\em Mutex to lock in the \doxylink{namespacetsa_a14e4da034ca803d941ea401747d880ff}{print\+Blocks()} critical section. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_a44c2de3ec72a256065e330f40ecc93b4}{tsa\+::segregated\+Lists}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{structtsa_1_1_block}{Block}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacetsa_a5d23b02fbf04761e906beaac0927a02d}{tsa\+::segregated\+Tops}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Thread-\/safe memory allocator, supports C++17 standard and higher. 
+
+The module interface placed in \textquotesingle{}tsa\+:\+:\textquotesingle{} namespace. \textquotesingle{}cstdint\textquotesingle{} defined in header. 
